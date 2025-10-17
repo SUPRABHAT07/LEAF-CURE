@@ -1,0 +1,44 @@
+:root {
+  --bg: #0b1020;
+  --card: #121833;
+  --muted: #9aa4b2;
+  --accent: #7c3aed;
+  --accent-2: #22d3ee;
+  --text: #e8ecf1;
+  --radius: 16px;
+  --shadow: 0 6px 30px rgba(0, 0, 0, 0.35);
+}
+* { box-sizing: border-box; }
+html, body { 
+  height: 100%; margin:0; font-family: Inter, sans-serif; color: var(--text); 
+  background: radial-gradient(1200px 800px at 80% -10%, rgba(124, 58, 237, 0.15), transparent 60%),
+              radial-gradient(1000px 600px at -10% 10%, rgba(34, 211, 238, 0.12), transparent 60%), 
+              var(--bg);
+  display: grid; place-items: start center; padding: 24px; 
+}
+.container { width: min(1024px,100%); }
+header { display:flex; align-items:center; gap:16px; margin-bottom:18px; }
+.title { font-size: clamp(20px,3vw,28px); font-weight:700; letter-spacing:0.3px; }
+.subtitle { color: var(--muted); font-size:14px; }
+
+.grid { display:grid; grid-template-columns:1.1fr 0.9fr; gap:18px; }
+@media (max-width:920px){.grid{grid-template-columns:1fr;}}
+
+.card { background: var(--card); border-radius: var(--radius); box-shadow: var(--shadow); padding:16px; }
+.card h3 { margin:0 0 12px 0; font-size:16px; }
+
+.dropzone { border:2px dashed rgba(255,255,255,0.16); border-radius: var(--radius); background: rgba(255,255,255,0.02); display:grid; place-items:center; padding:18px; text-align:center; cursor:pointer; min-height:220px; transition:0.2s; }
+.dropzone:hover { border-color: var(--accent); background: rgba(124, 58, 237,0.06); }
+input[type=file]{display:none;}
+label.file { padding:10px 14px; border-radius:999px; border:1px dashed rgba(255,255,255,0.2); cursor:pointer; }
+
+.preview-wrap { display:grid; gap:12px; }
+.preview { width:100%; border-radius:12px; overflow:hidden; background:#0b0f1d; border:1px solid rgba(255,255,255,0.08); display:grid; place-items:center; min-height:220px; }
+.preview img { max-width:100%; max-height:420px; display:block; }
+
+.controls { display:flex; flex-wrap:wrap; gap:10px; align-items:center; }
+button, .btn { background: linear-gradient(180deg, var(--accent), var(--accent-2)); border:none; border-radius:999px; color:white; padding:10px 14px; font-weight:600; cursor:pointer; transition:0.2s; }
+button:hover{filter:brightness(1.07); transform:translateY(-1px);}
+.btn-secondary { background: rgba(255,255,255,0.06); }
+
+.status { font-size:13px; color:var(--muted); margin-top:6px; }

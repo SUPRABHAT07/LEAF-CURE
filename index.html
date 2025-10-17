@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Banana Leaf Disease Detection</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="title">Banana Leaf Disease Detection</div>
+    </header>
+
+    <div class="grid">
+      <!-- Left: Upload / Camera -->
+      <section class="card">
+        <h3>1) Upload or Capture Leaf Image</h3>
+
+        <form method="POST" enctype="multipart/form-data" id="mainForm">
+          <!-- File upload -->
+          <div class="dropzone" id="dropzone">
+            <span class="subtitle">Drag & drop a photo or use one of the buttons below</span>
+            <div style="margin-top:8px">
+              <label class="file" for="leaf_image">Choose a file</label>
+              <input type="file" id="leaf_image" name="leaf_image" accept="image/*" onchange="previewFile(event)">
+            </div>
+            <div style="margin-top:8px">
+              <button type="button" class="btn-secondary" id="camBtn">Use Webcam</button>
+            </div>
+          </div>
+
+          <!-- Preview -->
+          <div class="preview-wrap" style="margin-top:12px;">
+            <div class="preview" id="preview"><span class="subtitle">No image yet</span></div>
+            <div class="controls">
+              <button type="submit" class="btn" id="predictBtn" disabled>🔍 Predict</button>
+              <button type="button" class="btn-secondary" onclick="clearPreview()">Clear</button>
+              <span class="status" id="imgInfo"></span>
+            </div>
+          </div>
+        </form>
+      </section>
+
+      <!-- Right: Prediction -->
+      <aside class="card">
+        <h3>2) Prediction</h3>
+        {% if result %}
+          <div class="status">Detected Disease:</div>
+          <div class="preview" style="margin-top:8px;">
+            <strong>{{ result }}</strong>
+            <img src="{{ img_url }}" alt="Leaf Image" style="margin-top:8px;" />
+          </div>
+        {% else %}
+          <div class="status">No prediction yet.</div>
+        {% endif %}
+      </aside>
+    </div>
+  </div>
+
+  <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
